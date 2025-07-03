@@ -15,7 +15,16 @@ function TypewriterText({ text, speed = 100, fontSize = '1.2rem' }) {
     return () => clearInterval(interval);
   }, [text, speed]);
 
-  return <h3 style={{ color: "#fff", marginTop: "20px", fontWeight: 400, fontSize }}>{displayedText}</h3>;
+  return (
+    <h3 style={{
+      color: "#fff",
+      marginTop: "20px",
+      fontWeight: 400,
+      fontSize
+    }}>
+      {displayedText}
+    </h3>
+  );
 }
 
 export default function App() {
@@ -37,7 +46,7 @@ export default function App() {
       style={{
         height: '100vh',
         width: '100vw',
-        backgroundImage: `url('./sunflower1.jpg')`,
+        backgroundImage: `url('/sunflower1.jpg')`,  // ✅ Fixed path
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         display: 'flex',
@@ -50,14 +59,19 @@ export default function App() {
         position: 'relative',
       }}
     >
-      <h1 style={{ fontSize: isMobile ? '2rem' : '3rem', marginBottom: '0.5rem' }}>To My Best Friend</h1>
-      <TypewriterText 
-        text="Every petal, like every memory — beautiful, gentle, and blooming with you 🌻" 
+      <h1 style={{
+        fontSize: isMobile ? '2rem' : '3rem',
+        marginBottom: '0.5rem'
+      }}>
+        To My Best Friend
+      </h1>
+
+      <TypewriterText
+        text="Every petal, like every memory — beautiful, gentle, and blooming with you 🌻"
         speed={70}
         fontSize={isMobile ? '1rem' : '1.2rem'}
       />
 
-      
       <div
         onClick={goToNextPage}
         style={{

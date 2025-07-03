@@ -1,61 +1,55 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 export default function Emotions() {
-    const Navigate=useNavigate();
-    const goToNextPage=()=>{
-        Navigate("/page5");
-    }
+  const navigate = useNavigate();
+  const goToNextPage = () => {
+    navigate("/page5");
+  };
+
   const [flipped, setFlipped] = useState(Array(9).fill(false));
 
   const emotions = [
     {
       label: "Sad",
-      img: "SADD.jpeg",
-      message:
-       ` Hey, I know it’s a tough day. Just remember, even clouds can’t hide the sun forever. You are stronger than you feel right now, and better days are coming
-         2) Hey why are you sad? You are not supposed to be sad, you are supposed to be happy. 
-         who made you sad huh????????`
-
+      img: "/SADD.jpeg",
+      message: `Hey, I know it’s a tough day. Just remember, even clouds can’t hide the sun forever. You are stronger than you feel right now, and better days are coming.
+2) Hey why are you sad? You are not supposed to be sad, you are supposed to be happy. 
+Who made you sad huh????????`
     },
     {
       label: "Happy",
-      img: "Happy.jpeg",
-      message:
-        "Hold onto this feeling, it’s golden! Your happiness is contagious, so spread it like sunshine ☀️🫶",
+      img: "/Happy.jpeg",
+      message: "Hold onto this feeling, it’s golden! Your happiness is contagious, so spread it like sunshine ☀️🫶",
     },
     {
       label: "Anxiety",
-      img: "Anxiety.jpeg",
-      message:
-`        Breathe in. Breathe out. You’ve survived 100% of your hardest days. Let this be one more you conquer. I'm right here, cheering silently for you 💛
-Calm down , just calm down, nothing is wrong, kanha hai sath mein, kuch bhi nahi hoga.,
-`    },
+      img: "/Anxiety.jpeg",
+      message: `Breathe in. Breathe out. You’ve survived 100% of your hardest days. Let this be one more you conquer. I'm right here, cheering silently for you 💛
+Calm down, just calm down, nothing is wrong, Kanha hai sath mein, kuch bhi nahi hoga.`,
+    },
     {
       label: "Scared",
-      img: "Scared.jpeg",
-      message:
-        "It’s okay to be scared. But don’t forget — fear is just excitement without breath. You've got this, even if your hands are shaking 🫂",
+      img: "/Scared.jpeg",
+      message: "It’s okay to be scared. But don’t forget — fear is just excitement without breath. You've got this, even if your hands are shaking 🫂",
     },
     {
       label: "Disgust",
-      img: "dosgust.jpeg",
-      message:
-`            Not everything deserves a reaction. Protect your peace, and remember, you always have the choice to walk away 💅
-it would be radhika who made you disgusted.....,
-`    },
+      img: "/dosgust.jpeg",
+      message: `Not everything deserves a reaction. Protect your peace, and remember, you always have the choice to walk away 💅
+It would be Radhika who made you disgusted...`,
+    },
     {
       label: "Anger",
-      img: "Anger.jpeg",
-      message:
-        "Let that fire in your chest burn bright but not wild. You're allowed to feel, but don’t let it consume your heart. Deep breaths, warrior 🔥",
+      img: "/Anger.jpeg",
+      message: "Let that fire in your chest burn bright but not wild. You're allowed to feel, but don’t let it consume your heart. Deep breaths, warrior 🔥",
     },
     {
       label: "Healing",
-      img: "Healing.jpeg",
-      message:
-`        Healing isn’t linear. Every scar is a story of survival. You’re blooming, slowly and beautifully 🌷✨
-you are healing, you are healing, you are healing, you are healing, you are healing,
-`    },
+      img: "/Healing.jpeg",
+      message: `Healing isn’t linear. Every scar is a story of survival. You’re blooming, slowly and beautifully 🌷✨
+You are healing, you are healing, you are healing, you are healing, you are healing.`,
+    },
   ];
 
   const cardStyle = (index) => ({
@@ -86,14 +80,13 @@ you are healing, you are healing, you are healing, you are healing, you are heal
 
   const frontStyle = (img) => ({
     ...sideStyle,
-    backgroundImage: `url(${img})`,
+    backgroundImage: `url('${img}')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   });
 
   const backStyle = {
     ...sideStyle,
-    
     transform: 'rotateY(180deg)',
     display: 'flex',
     alignItems: 'center',
@@ -112,45 +105,60 @@ you are healing, you are healing, you are healing, you are healing, you are heal
 
   return (
     <>
-    <h1>For you when you are not okay....I guess</h1>
-    <div style={{
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'center',
-      alignItems: 'center',
-      gap: '30px',
-      minHeight: '70vh',
-      
-      padding: '50px 20px',
-      fontFamily: `'Dancing Script', cursive`,
-    }}>
-      {emotions.map((emo, index) => (
-        <div
-          key={index}
-          style={cardStyle(index)}
-          onClick={() => toggleFlip(index)}
-        >
-          <div style={innerStyle(flipped[index])}>
-            <div style={frontStyle(emo.img)}></div>
-            <div style={backStyle}>{emo.message}</div>
+      <h1 style={{
+        textAlign: 'center',
+        fontFamily: `'Dancing Script', cursive`,
+        fontSize: '2rem',
+        margin: '20px 0'
+      }}>
+        For you when you are not okay... I guess
+      </h1>
+
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '30px',
+        minHeight: '70vh',
+        padding: '50px 20px',
+        fontFamily: `'Dancing Script', cursive`,
+      }}>
+        {emotions.map((emo, index) => (
+          <div
+            key={index}
+            style={cardStyle(index)}
+            onClick={() => toggleFlip(index)}
+          >
+            <div style={innerStyle(flipped[index])}>
+              <div style={frontStyle(emo.img)}></div>
+              <div style={backStyle}>{emo.message}</div>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
-    <div
+        ))}
+      </div>
+
+      <div
         onClick={goToNextPage}
         style={{
-            position: "fixed",   
-            bottom: "30px",
-            right: "30px",         
-            fontSize: "2rem",
-            cursor: "pointer",
-            animation: "bounce 1.5s infinite",
-            zIndex: 1000    
-         }}
-         >
-            ➡️
+          position: "fixed",
+          bottom: "30px",
+          right: "30px",
+          fontSize: "2rem",
+          cursor: "pointer",
+          animation: "bounce 1.5s infinite",
+          zIndex: 1000
+        }}
+      >
+        ➡️
       </div>
+
+      <style>{`
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+      `}</style>
     </>
   );
 }

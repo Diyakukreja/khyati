@@ -1,4 +1,3 @@
-
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -33,6 +32,8 @@ export default function MemoryWall() {
       fontFamily: `'Dancing Script', cursive`,
       alignItems: 'center',
       justifyContent: 'center',
+      backgroundColor: '#fbe7c6', // Optional: Add soft background color
+      padding: '20px',
     },
     container: {
       display: 'grid',
@@ -40,7 +41,7 @@ export default function MemoryWall() {
       gridGap: isMobile ? '5vh' : '20vh',
       padding: isMobile ? '20px' : '60px',
       flex: 1,
-      justifyItems: 'center'
+      justifyItems: 'center',
     },
     card: {
       backgroundColor: 'white',
@@ -50,11 +51,11 @@ export default function MemoryWall() {
       width: isMobile ? '80%' : '230px',
       textAlign: 'center',
       transition: 'transform 0.3s ease',
-      border: '1px solid #eee'
+      border: '1px solid #eee',
     },
     image: {
       width: '100%',
-      borderRadius: '10px'
+      borderRadius: '10px',
     },
   };
 
@@ -63,23 +64,26 @@ export default function MemoryWall() {
       <div style={styles.container}>
         {photos.map((photo, index) => (
           <div key={index} style={styles.card}>
-            <img src={photo.src} alt="memory" style={styles.image} />
+            <img src={photo.src} alt={`memory-${index + 1}`} style={styles.image} />
           </div>
         ))}
       </div>
+
       <div style={{
         fontSize: isMobile ? '5vh' : '9vh',
         fontFamily: `'Dancing Script', cursive`,
         color: '#fff',
         textShadow: '2px 2px 8px rgba(0,0,0,0.4)',
         padding: '20px',
-        textAlign: 'center'
+        textAlign: 'center',
+        position: 'relative'
       }}>
         My <br />
         Beautiful <br />
         Human <br />
         Being 💫 <br />
         <div style={{ fontSize: isMobile ? '2vh' : '3vh' }}>🌸✨💛🌈🥹</div>
+
         <button 
           onClick={goToNextPage}
           style={{
@@ -94,6 +98,13 @@ export default function MemoryWall() {
         >
           ➡️
         </button>
+
+        <style>{`
+          @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+          }
+        `}</style>
       </div>
     </div>
   );
